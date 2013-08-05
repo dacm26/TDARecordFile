@@ -32,10 +32,14 @@ bool TDAFile::close(){
 }
 
 int TDAFile::read(char* buffer,int s){
-	return 0;
+	if (mode==ios_base::out)
+		return -1;
+
+	file.read(buffer,s);
+	return file.gcount()
 }
 
-int TDAFile::write(char* buffer,int s){
+int TDAFile::write(const char* buffer,int s){
 	return 0;
 }
 
@@ -45,16 +49,28 @@ bool TDAFile::flush(){
 		file.flush();
 		if(this->file.rdstate()!= 0)
 		return false;
-	
+
 	}
 	return false;
 }
 
 bool TDAFile::seek(int n,char s){
+	if (mode==ios_base::in)//utilizariamos la libreria ifstream
+	{
+	}
+	else if(mode==ios_base::out){//utilizariamos la libreria ofstream
+
+	}
 	return false;
 }
 
 int TDAFile::tell(int n,char s){
+	if (mode==ios_base::in)//utilizariamos la libreria ifstream
+	{
+	}
+	else if(mode==ios_base::out){//utilizariamos la libreria ofstream
+
+	}
 	return false;
 }
 
@@ -73,11 +89,11 @@ bool TDAFile::isOk(){
 }
 
 bool TDAFile::isBoF(){
-	if (mode==ios_base::in)
+	if (mode==ios_base::in)//utilizariamos la libreria ifstream
 		if(file.tellg()==0)
 			return true;
 
-	else if(mode==ios_base::out)
+	else if(mode==ios_base::out)//utilizariamos la libreria ofstream
 		if(file.tellp()==0)
 			return true;
 

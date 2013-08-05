@@ -12,7 +12,7 @@ public:
 	bool open(string,ios_base::openmode);
 	bool close();
 	int read(char*,int);
-	int write(char*,int);
+	int write(const char*,int);
 	bool flush();
 	virtual bool seek(int,char);
 	virtual int tell(int,char);
