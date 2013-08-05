@@ -2,28 +2,27 @@
 #define TDAFILE_H
 #include <string>
 #include <ios>
+#include <fstream>
 using namespace std;
 class TDAFile
 {
 public:
 	TDAFile();
-	TDAFile(string,ios_base::openmode);
 	~TDAFile();
 	bool open(string,ios_base::openmode);
 	bool close();
-	bool trunc();
 	int read(char*,int);
 	int write(char*,int);
 	bool flush();
-	virtual bool seek();
-	virtual int tell();
+	virtual bool seek(int,char);
+	virtual int tell(int,char);
 	bool isOpen();
 	bool isOk();
 	bool isBoF();
 	bool isEoF();
 private:
+	fstream file;
 	string filename;
-	int size;
 	ios_base::openmode mode;
 };
 #endif

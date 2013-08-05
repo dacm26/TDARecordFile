@@ -6,30 +6,29 @@
 using namespace std;
 
 TDAFile::TDAFile(){
-	filename="\0";
-	size=0;
-}
-
-TDAFile::TDAFile(string name,ios_base::openmode modo){
-	filename=name;
-	mode=modo;
-	size=0;
 }
 
 TDAFile::~TDAFile(){
-
 }
 
 bool TDAFile::open(string name,ios_base::openmode modo){
+	filename=name;
+	mode=modo;
+	file.open(name.c_str(), modo);
+	if (file.is_open())
+		return true;
+
 	return false;
 }
 
 bool TDAFile::close(){
-	return false;
-}
-
-bool TDAFile::trunc(){
-	return false;
+	if (!file.is_open())
+		return false;
+	
+	if(file.rdstate()!= 0)
+		return false;
+	
+	return true;
 }
 
 int TDAFile::read(char* buffer,int s){
@@ -41,29 +40,52 @@ int TDAFile::write(char* buffer,int s){
 }
 
 bool TDAFile::flush(){
+	if (mode==ios_base::out)
+	{
+		file.flush();
+		if(this->file.rdstate()!= 0)
+		return false;
+	
+	}
 	return false;
 }
 
-bool TDAFile::seek(){
+bool TDAFile::seek(int n,char s){
 	return false;
 }
 
-int TDAFile::tell(){
+int TDAFile::tell(int n,char s){
 	return false;
 }
 
 bool TDAFile::isOpen(){
+	if(file.is_open())
+		return true;
+
 	return false;
 }
 
 bool TDAFile::isOk(){
+	if(file.good())
+		return true;
+
 	return false;
 }
 
 bool TDAFile::isBoF(){
+	if (mode==ios_base::in)
+		if(file.tellg()==0)
+			return true;
+
+	else if(mode==ios_base::out)
+		if(file.tellp()==0)
+			return true;
+
 	return false;
 }
 
 bool TDAFile::isEoF(){
+	if(file.eof())
+		return true;
 	return false;
 }
