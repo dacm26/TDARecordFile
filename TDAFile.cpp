@@ -69,7 +69,6 @@ int TDAFile::tell(int n,char s){
 	{
 	}
 	else if(mode==ios_base::out){//utilizariamos la libreria ofstream
-
 	}
 	return false;
 }
