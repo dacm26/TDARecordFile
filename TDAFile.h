@@ -14,8 +14,8 @@ public:
 	int read(char*,int);
 	int write(const char*,int);
 	bool flush();
-	virtual bool seek(int,char);
-	virtual int tell(int,char);
+	virtual bool seek(int,ios_base::seekdir);
+	virtual int tell();
 	bool isOpen();
 	bool isOk();
 	bool isBoF();

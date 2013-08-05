@@ -36,7 +36,7 @@ int TDAFile::read(char* buffer,int s){
 		return -1;
 
 	file.read(buffer,s);
-	return file.gcount()
+	return file.gcount();
 }
 
 int TDAFile::write(const char* buffer,int s){
@@ -54,7 +54,7 @@ bool TDAFile::flush(){
 	return false;
 }
 
-bool TDAFile::seek(int n,char s){
+bool TDAFile::seek(int n,ios_base::seekdir way){
 	if (mode==ios_base::in)//utilizariamos la libreria ifstream
 	{
 	}
@@ -64,13 +64,15 @@ bool TDAFile::seek(int n,char s){
 	return false;
 }
 
-int TDAFile::tell(int n,char s){
+int TDAFile::tell(){
 	if (mode==ios_base::in)//utilizariamos la libreria ifstream
 	{
+		return file.tellg();
 	}
 	else if(mode==ios_base::out){//utilizariamos la libreria ofstream
+		return file.tellp();
 	}
-	return false;
+	return -1;
 }
 
 bool TDAFile::isOpen(){
