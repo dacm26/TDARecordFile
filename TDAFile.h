@@ -1,14 +1,15 @@
 #ifndef TDAFILE_H
 #define TDAFILE_H
 #include <string>
+#include <ios>
 using namespace std;
 class TDAFile
 {
 public:
 	TDAFile();
-	TDAFile(string,char);
+	TDAFile(string,ios_base::openmode);
 	~TDAFile();
-	bool open(string,char);
+	bool open(string,ios_base::openmode);
 	bool close();
 	bool trunc();
 	int read(char*,int);
@@ -23,6 +24,6 @@ public:
 private:
 	string filename;
 	int size;
-	char mode;
+	ios_base::openmode mode;
 };
 #endif

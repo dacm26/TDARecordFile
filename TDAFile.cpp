@@ -8,19 +8,19 @@ using namespace std;
 TDAFile::TDAFile(){
 	filename="\0";
 	size=0;
-	mode='\0';
 }
 
-TDAFile::TDAFile(string name,char modo){
+TDAFile::TDAFile(string name,ios_base::openmode modo){
 	filename=name;
 	mode=modo;
+	size=0;
 }
 
 TDAFile::~TDAFile(){
 
 }
 
-bool TDAFile::open(string name,char modo){
+bool TDAFile::open(string name,ios_base::openmode modo){
 	return false;
 }
 
