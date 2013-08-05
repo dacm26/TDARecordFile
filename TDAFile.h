@@ -10,6 +10,7 @@ public:
 	TDAFile();
 	~TDAFile();
 	bool open(string,ios_base::openmode);
+	bool open(string,ios_base::openmode,ios_base::openmode);
 	bool close();
 	int read(char*,int);
 	int write(const char*,int);

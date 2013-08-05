@@ -14,12 +14,26 @@ TDAFile::~TDAFile(){
 bool TDAFile::open(string name,ios_base::openmode modo){
 	filename=name;
 	mode=modo;
+
 	file.open(name.c_str(), modo);
+
 	if (file.is_open())
 		return true;
 
 	return false;
 }
+bool TDAFile::open(string name,ios_base::openmode modo,ios_base::openmode modo2){
+	filename=name;
+	mode=modo;
+	
+	file.open(name.c_str(), modo | modo2);
+	
+	if (file.is_open())
+		return true;
+
+	return false;
+}
+
 
 bool TDAFile::close(){
 	if (!file.is_open())
